@@ -1,0 +1,29 @@
+{
+  "name": "desafio-dev-api-rest",
+  "version": "1.0.0",
+  "description": "Desafio Dock",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "cross-env NODE_ENV=dev DEBUG=app:* nodemon src/server.js",
+    "start": "cross-env DEBUG=app:* node src/server.js"
+  },
+  "keywords": [],
+  "author": "Bruno",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "cross-env": "^7.0.2",
+    "date-fns": "^2.16.1",
+    "debug": "^4.2.0",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-validator": "^6.6.1",
+    "glob": "^7.1.6",
+    "knex": "^0.21.7",
+    "morgan": "^1.10.0",
+    "sqlite3": "^5.0.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.6"
+  }
+}
