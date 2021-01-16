@@ -1,6 +1,8 @@
 let env;
 if (process.env.NODE_ENV === "dev") {
     env = ".env.dev";
+} else if (process.env.NODE_ENV === 'test') {
+    env = ".env.test";
 } else {
     env = ".env";
 }
@@ -12,10 +14,10 @@ require("dotenv").config({
 const database = {
     client: 'sqlite3',
     connection: {
-        filename: "./dock.sqlite"
+        filename: process.env.DB || "./dock.sqlite"
     },
     useNullAsDefault: true,
-    debug: process.env.DB_DEBUG
+    debug: process.env.DB_DEBUG === 'true' ? true : false
 }
 
 module.exports = database;

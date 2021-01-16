@@ -2,17 +2,6 @@ const express = require("express");
 const cors = require("cors");
 const morgan = require("morgan");
 
-let env;
-if (process.env.NODE_ENV === "dev") {
-    env = ".env.dev";
-} else {
-    env = ".env";
-}
-
-require("dotenv").config({
-    path: env
-});
-
 class AppController {
     constructor() {
         this.express = express();
@@ -24,7 +13,8 @@ class AppController {
     middlewares() {
         this.express.use(express.json());
         this.express.use(cors());
-        this.express.use(morgan('dev'));
+        if (process.env.NODE_ENV !== 'test')
+            this.express.use(morgan('dev'));
     }
 
     routes() {
