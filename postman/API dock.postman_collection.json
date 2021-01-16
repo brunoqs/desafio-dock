@@ -1,0 +1,133 @@
+{
+	"variables": [],
+	"info": {
+		"name": "API dock",
+		"_postman_id": "a9be74cd-c682-39b0-ab1c-137aa6a2c428",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Cria pessoa/conta",
+			"request": {
+				"url": "http://localhost:3000/api/v1/contas",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"nome\": \"bruno\",\n\t\"cpf\": \"106.578.576-37\",\n\t\"dataNascimento\": \"1900-12-13\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Extrato por periodo",
+			"request": {
+				"url": "http://localhost:3000/api/v1/transacoes/extrato-periodo/1",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"dataInicial\": \"2021-01-16\",\n\t\"dataFinal\": \"2021-01-17\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Deposito em conta",
+			"request": {
+				"url": "http://localhost:3000/api/v1/contas/deposito",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"idConta\": 1,\n\t\"valor\": 12333.12\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Saque",
+			"request": {
+				"url": "http://localhost:3000/api/v1/contas/sacar",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"idConta\": 1,\n\t\"valor\": 123.12\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Bloquer conta",
+			"request": {
+				"url": "http://localhost:3000/api/v1/contas/bloquear",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"idConta\": 1\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Consultar saldo em conta",
+			"request": {
+				"url": "http://localhost:3000/api/v1/contas/1",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Extrato",
+			"request": {
+				"url": "http://localhost:3000/api/v1/transacoes/extrato/1",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
