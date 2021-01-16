@@ -1,5 +1,4 @@
 const contasController = require('../controllers/contas.controller');
-const contasMiddleware = require('../middlewares/contas.middleware');
 const appMiddleware = require('../../../middlewares/app.middleware');
 const { body } = require('express-validator');
 const validarCpf = require('../../../helpers/cpf.helper');
@@ -39,13 +38,13 @@ module.exports = (app) => {
     `/api/v1/contas/deposito`,
     validatorDepositarSacar,
     appMiddleware.validatorMiddleware,
-    contasMiddleware.verificaConta,
+    appMiddleware.verificaConta,
     contasController.depositar
   );
 
   app.get(
     `/api/v1/contas/:idConta`,
-    contasMiddleware.verificaConta,
+    appMiddleware.verificaConta,
     contasController.consultar
   );
 
@@ -53,7 +52,7 @@ module.exports = (app) => {
     `/api/v1/contas/sacar`,
     validatorDepositarSacar,
     appMiddleware.validatorMiddleware,
-    contasMiddleware.verificaConta,
+    appMiddleware.verificaConta,
     contasController.sacar
   );
 
@@ -61,7 +60,7 @@ module.exports = (app) => {
     `/api/v1/contas/bloquear`,
     validatorBloquear,
     appMiddleware.validatorMiddleware,
-    contasMiddleware.verificaConta,
+    appMiddleware.verificaConta,
     contasController.bloquear
   );
 

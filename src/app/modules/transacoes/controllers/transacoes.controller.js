@@ -1,4 +1,4 @@
-const debug = require('debug')('app:icmbio');
+const debug = require('debug')('app:dock');
 const transacoesRepository = require('../../../repositories/transacoes.repository');
 
 const extrato = async (req, res, next) => {

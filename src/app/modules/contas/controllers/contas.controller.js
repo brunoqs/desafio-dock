@@ -1,4 +1,4 @@
-const debug = require('debug')('app:icmbio');
+const debug = require('debug')('app:dock');
 const contasRepository = require('../../../repositories/contas.repository');
 const pessoasRepository = require('../../../repositories/pessoas.repository');
 const transacoesRepository = require('../../../repositories/transacoes.repository');

@@ -14,13 +14,15 @@ module.exports = (app) => {
 
   app.get(
     `/api/v1/transacoes/extrato/:idConta`,
-    transacoesController.extrato
+    appMiddleware.verificaConta,
+    transacoesController.extrato,
   );
 
   app.post(
     `/api/v1/transacoes/extrato-periodo/:idConta`,
     validatorExtratoPeriodo,
     appMiddleware.validatorMiddleware,
+    appMiddleware.verificaConta,
     transacoesController.extratoPeriodo
   );
 

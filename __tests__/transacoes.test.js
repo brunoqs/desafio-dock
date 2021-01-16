@@ -76,7 +76,7 @@ describe("Transacoes", () => {
                 cpf: "743.119.150-20",
                 dataNascimento: "1950-12-13"
             });
-        
+
         const idConta = res.body.idConta;
 
         res = await request(app)
@@ -116,7 +116,7 @@ describe("Transacoes", () => {
                 cpf: "773.727.500-24",
                 dataNascimento: "1950-12-13"
             });
-        
+
         const idConta = res.body.idConta;
 
         let dataFinal = new Date();
@@ -142,7 +142,7 @@ describe("Transacoes", () => {
                 cpf: "647.939.570-05",
                 dataNascimento: "1950-12-13"
             });
-        
+
         const idConta = res.body.idConta;
 
         res = await request(app)
@@ -153,6 +153,58 @@ describe("Transacoes", () => {
             });
 
         expect(res.status).toBe(400);
+    });
+
+    it("usuario deve consultar extrato em conta bloqueada", async () => {
+
+        let res = await request(app)
+            .post(`/api/v1/contas`)
+            .send({
+                nome: "Guido",
+                cpf: "954.455.680-08",
+                dataNascimento: "1950-12-13"
+            });
+
+        const idConta = res.body.idConta;
+
+        res = await request(app)
+            .put(`/api/v1/contas/bloquear`)
+            .send({
+                idConta
+            });
+
+        res = await request(app).get(`/api/v1/transacoes/extrato/${idConta}`)
+
+        expect(res.body.message).toEqual('Conta bloqueada');
+    });
+
+    it("usuario deve consultar extrato por periodo em conta bloqueada", async () => {
+
+        let res = await request(app)
+            .post(`/api/v1/contas`)
+            .send({
+                nome: "linus torvalds",
+                cpf: "003.305.080-59",
+                dataNascimento: "1950-12-13"
+            });
+
+        const idConta = res.body.idConta;
+
+        res = await request(app)
+            .put(`/api/v1/contas/bloquear`)
+            .send({
+                idConta
+            });
+
+
+        res = await request(app)
+            .post(`/api/v1/transacoes/extrato-periodo/${idConta}`)
+            .send({
+                dataInicial: '2020-10-10',
+                dataFinal: '2020-10-15'
+            });
+
+        expect(res.body.message).toEqual('Conta bloqueada');
     });
 
 });
